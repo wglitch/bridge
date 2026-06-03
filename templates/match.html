@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+  <h2>Matchmaking</h2>
+  {% if candidate %}
+    <p>We found a moderate-disagreement match:</p>
+    <ul>
+      <li><strong>Pseudonym:</strong> {{ candidate.pseudonym }}</li>
+      <li><strong>Position distance:</strong> {{ candidate.distance }}</li>
+    </ul>
+    <form method="post" action="{{ url_for('start_conversation', user_id=user_id) }}">
+      <input type="hidden" name="partner_id" value="{{ candidate.id }}">
+      <button class="button" type="submit">Start conversation</button>
+    </form>
+  {% else %}
+    <p>No moderate-disagreement match is available yet. Add another participant and try again.</p>
+    <a class="button secondary" href="{{ url_for('questionnaire') }}">Add another participant</a>
+  {% endif %}
+</section>
+{% endblock %}

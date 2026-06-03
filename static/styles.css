@@ -1,0 +1,70 @@
+:root {
+  --bg: #f7f6f3;
+  --card: #ffffff;
+  --ink: #2d2a26;
+  --muted: #6a645b;
+  --accent: #5d7a88;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.subtitle { color: var(--muted); }
+
+.card {
+  background: var(--card);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+label { display: block; margin: 0.75rem 0; }
+input, textarea {
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.5rem;
+  border: 1px solid #d9d4ce;
+  border-radius: 6px;
+}
+
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.button.secondary {
+  margin-top: 0.8rem;
+  background: #8b9ea8;
+}
+
+.errors { color: #8a1e1e; }
+.timer { font-weight: bold; }
+.midpoint { background: #f1f7fa; padding: 0.6rem; border-radius: 6px; }
+.hidden { display: none; }
+.message { border-top: 1px solid #ece7e2; padding: 0.6rem 0; }
+
+@media (max-width: 600px) {
+  .container { padding: 0.7rem; }
+  .card { padding: 0.8rem; }
+}

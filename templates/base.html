@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bridge MVP</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1>Bridge</h1>
+      <p class="subtitle">Understand people you disagree with.</p>
+    </header>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

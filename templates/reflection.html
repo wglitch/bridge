@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+  <h2>Reflection</h2>
+  <p>This step is the core feature: accurately represent the other person before judging.</p>
+  <form method="post">
+    <input type="hidden" name="as_user" value="{{ as_user }}">
+
+    <label>What was the other person's strongest point?
+      <textarea name="strongest_point" rows="3" required></textarea>
+    </label>
+
+    <label>Summarize their position.
+      <textarea name="summary_of_other" rows="5" required></textarea>
+    </label>
+
+    <label>Did you feel understood? (1-5)
+      <input type="number" name="felt_understood" min="1" max="5" required>
+    </label>
+
+    <label>Was the conversation respectful? (1-5)
+      <input type="number" name="was_respectful" min="1" max="5" required>
+    </label>
+
+    <button class="button" type="submit">Submit reflection</button>
+  </form>
+</section>
+{% endblock %}

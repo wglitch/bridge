@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+  <h2>Questionnaire</h2>
+  <p>Rate each statement from 1 (strongly disagree) to 10 (strongly agree).</p>
+
+  {% if errors %}
+    <div class="errors">
+      {% for error in errors %}<p>{{ error }}</p>{% endfor %}
+    </div>
+  {% endif %}
+
+  <form method="post">
+    <label>Pseudonym
+      <input type="text" name="pseudonym" required maxlength="30">
+    </label>
+
+    {% for q in questions %}
+      <label>{{ q.text }}
+        <input type="number" name="{{ q.key }}" min="1" max="10" required>
+      </label>
+    {% endfor %}
+
+    <button class="button" type="submit">Save and find a match</button>
+  </form>
+</section>
+{% endblock %}
