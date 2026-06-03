@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+  <h2>Structured conversation</h2>
+  <p>This chat is private and anonymous.</p>
+  <p id="timer" class="timer" data-minutes="{{ duration_minutes }}">Time left: --:--</p>
+  <p id="midpoint" class="midpoint hidden">Try to summarize the other person’s perspective.</p>
+
+  <h3>Participants</h3>
+  <ul>
+    {% for user in participants %}
+      <li>{{ user.pseudonym }} {% if user.id == as_user %}(you){% endif %}</li>
+    {% endfor %}
+  </ul>
+
+  <div class="messages">
+    {% for m in messages %}
+      <article class="message">
+        <strong>{{ m.pseudonym }}</strong>
+        <p>{{ m.body }}</p>
+      </article>
+    {% else %}
+      <p>No messages yet. Start with curiosity.</p>
+    {% endfor %}
+  </div>
+
+  <form method="post">
+    <input type="hidden" name="as_user" value="{{ as_user }}">
+    <label>Your message
+      <textarea name="body" rows="3" maxlength="500"></textarea>
+    </label>
+    <button class="button" type="submit">Send</button>
+  </form>
+
+  <a class="button secondary" href="{{ url_for('reflection', conversation_id=conversation_id, as_user=as_user) }}">Go to reflection</a>
+</section>
+
+<script>
+  const timerEl = document.getElementById('timer');
+  const midpointEl = document.getElementById('midpoint');
+  const totalSeconds = parseInt(timerEl.dataset.minutes, 10) * 60;
+  const midpoint = Math.floor(totalSeconds / 2);
+  let remaining = totalSeconds;
+
+  function tick() {
+    const minutes = Math.floor(remaining / 60).toString().padStart(2, '0');
+    const seconds = (remaining % 60).toString().padStart(2, '0');
+    timerEl.textContent = `Time left: ${minutes}:${seconds}`;
+
+    if (remaining === midpoint) {
+      midpointEl.classList.remove('hidden');
+    }
+
+    if (remaining > 0) {
+      remaining -= 1;
+      setTimeout(tick, 1000);
+    }
+  }
+
+  tick();
+</script>
+{% endblock %}

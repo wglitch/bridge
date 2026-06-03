@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+  <h2>Conversation complete</h2>
+  <p>Thank you for participating with curiosity and respect.</p>
+  <p>Your hidden reputation score has been updated.</p>
+  <p><strong>Current score:</strong> {{ score }}</p>
+  <a class="button" href="{{ url_for('home') }}">Back to home</a>
+</section>
+{% endblock %}
